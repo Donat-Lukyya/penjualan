@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - Donat Lukkya</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding: 20px; background: #fffafb;">
+    <div style="max-width: 450px; margin: 0 auto; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <h2 style="text-align: center; color: #ff85a2;">Daftar Pesanan</h2>
+        <div id="cart-list" style="margin: 20px 0; border-bottom: 1px solid #eee;"></div>
+        <h3 id="total-price" style="text-align: right; margin-bottom: 20px;">Total: Rp 0</h3>
+        
+        <form id="orderForm">
+            <input type="text" id="nama" placeholder="Nama Anda" required style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #eee;">
+            <textarea id="alamat" placeholder="Alamat di Medan Baru / Padang Bulan" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #eee;"></textarea>
+            <button type="submit" style="width:100%; padding:15px; background:#25d366; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">Kirim ke WhatsApp</button>
+        </form>
+        <a href="index.html" style="display:block; text-align:center; margin-top:15px; color:#999; text-decoration:none;">Kembali</a>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+        const list = document.getElementById('cart-list');
+
+        cart.forEach(item => {
+            list.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px;"><span>${item.name} (${item.variant})</span><span>Rp ${item.price.toLocaleString()}</span></div>`;
+            total += item.price;
+        });
+        document.getElementById('total-price').innerText = "Total: Rp " + total.toLocaleString('id-ID');
+
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if(cart.length === 0) return;
+
+            const waktu = new Date().toLocaleString('id-ID');
+            const itemsSummary = cart.map(i => i.name + " (" + i.variant + ")").join(", ");
+            
+            // SIMPAN KE RIWAYAT
+            let history = JSON.parse(localStorage.getItem('orderHistory')) || [];
+            history.push({ date: waktu, items: itemsSummary, total: total });
+            localStorage.setItem('orderHistory', JSON.stringify(history));
+
+            // WA LINK
+            let msg = `Halo Donat Lukkya, saya *${document.getElementById('nama').value}*%0AAlamat: ${document.getElementById('alamat').value}%0APesanan: ${itemsSummary}%0ATotal: Rp ${total.toLocaleString()}`;
+            
+            localStorage.removeItem('cart');
+            window.open(`https://wa.me/6283139263951?text=${msg}`, '_blank');
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

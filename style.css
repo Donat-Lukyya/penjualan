@@ -1,0 +1,36 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background: #fffafb; color: #4e342e; }
+
+/* Navbar Ramping + Logo Kecil */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 8%; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.logo-container { display: flex; align-items: center; gap: 10px; }
+.nav-logo-tiny { height: 35px; width: auto; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: bold; }
+.logo-text span { color: #ff85a2; }
+
+/* Hero */
+.hero { height: 45vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #ffeef2; padding: 20px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+.badge { background: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 10px; display: inline-block; }
+.btn-primary { background: #ff85a2; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; }
+
+/* Products */
+.products { padding: 40px 8%; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.product-card { background: white; padding: 15px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
+.img-container img { width: 100%; border-radius: 15px; height: 180px; object-fit: cover; }
+.display-price { font-weight: bold; color: #d81b60; font-size: 1.1rem; }
+.add-btn { width: 100%; padding: 10px; background: #2d3436; color: white; border: none; border-radius: 10px; cursor: pointer; }
+
+/* History */
+.history-section { padding: 40px 8%; background: #fdf2f4; }
+.history-container { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.history-card { background: white; padding: 15px; border-radius: 12px; border-left: 4px solid #ff85a2; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.history-date { font-size: 10px; color: #aaa; }
+.history-total { font-weight: bold; color: #d81b60; margin-top: 5px; }
+.clear-history { display: block; margin: 15px auto 0; background: none; border: none; color: #999; font-size: 11px; cursor: pointer; text-decoration: underline; }
+
+/* Footer */
+.main-footer { background: #2d3436; color: white; padding: 30px 8%; text-align: center; }
+.footer-info h3 { color: #ff85a2; font-size: 16px; margin-bottom: 5px; }
+.footer-info p { font-size: 13px; opacity: 0.8; }
